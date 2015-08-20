@@ -17,26 +17,31 @@ class StoriesTableViewController: UITableViewController {
     private let storiesCache = NSCache()
     
     var topStories = JSON(NSNull)
+    var storiesUrl = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let storiesUrl = self.tabBarController?.selectedIndex == 0 ? "https://hacker-news.firebaseio.com/v0/topstories.json" : "https://hacker-news.firebaseio.com/v0/newstories.json"
 
         tableView.estimatedRowHeight = 120.0
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        if topStories.count == 0 {
-            Alamofire.request(.GET, storiesUrl).responseJSON { (req, res, json, error) in
-                if error != nil {
-                    println(req)
-                    println(res)
-                } else {
-                    self.topStories = JSON(json!)
-                    self.tableView.reloadData()
-                }
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.addTarget(self, action: "reloadData", forControlEvents: .ValueChanged)
+        
+        reloadData()
+    }
+    
+    func reloadData() {
+        Alamofire.request(.GET, storiesUrl).responseJSON { (req, res, json, error) in
+            if error != nil {
+                println(req)
+                println(res)
+            } else {
+                self.topStories = JSON(json!)
+                self.storiesCache.removeAllObjects()
+                self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
             }
-            
         }
     }
 
@@ -61,7 +66,7 @@ class StoriesTableViewController: UITableViewController {
             cell.titleLabel.text = storyData["title"].stringValue
             cell.userButton.setTitle(storyData["by"].stringValue, forState: .Normal)
             let url = storyData["url"].stringValue.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-            cell.urlLabel.text = url.isEmpty ? "" : NSURL(string: url)!.host!
+            cell.urlLabel.text = NSURL(string: url)?.host ?? ""
             cell.timeLabel.text = Helper.timeAgoFromTimeInterval(NSDate().timeIntervalSince1970 - NSTimeInterval(storyData["time"].intValue))
             cell.pointLabel.text = storyData["score"].stringValue + " points"
             cell.commentButton.setTitle(String(storyData["kids"].arrayValue.count), forState: .Normal)

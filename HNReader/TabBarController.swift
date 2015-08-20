@@ -17,10 +17,12 @@ class TabBarController: UITabBarController {
         let topStoriesTVC = self.storyboard?.instantiateViewControllerWithIdentifier("StoriesTableViewController") as! StoriesTableViewController
         topStoriesTVC.title = "Top"
         topStoriesTVC.tabBarItem = UITabBarItem(tabBarSystemItem: .TopRated, tag: 0)
+        topStoriesTVC.storiesUrl = "https://hacker-news.firebaseio.com/v0/topstories.json"
         
         let recentStoriesTVC = self.storyboard?.instantiateViewControllerWithIdentifier("StoriesTableViewController") as! StoriesTableViewController
         recentStoriesTVC.title = "Recent"
         recentStoriesTVC.tabBarItem = UITabBarItem(tabBarSystemItem: .Recents, tag: 1)
+        recentStoriesTVC.storiesUrl = "https://hacker-news.firebaseio.com/v0/newstories.json"
         
         self.viewControllers = [UINavigationController(rootViewController: topStoriesTVC), UINavigationController(rootViewController: recentStoriesTVC)]
         
