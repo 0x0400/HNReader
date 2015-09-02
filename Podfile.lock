@@ -1,0 +1,27 @@
+PODS:
+  - Alamofire (1.3.1)
+  - DTCoreText (1.6.16):
+    - DTFoundation/Core (~> 1.7.5)
+    - DTFoundation/DTAnimatedGIF (~> 1.7.5)
+    - DTFoundation/DTHTMLParser (~> 1.7.5)
+    - DTFoundation/UIKit (~> 1.7.5)
+  - DTFoundation/Core (1.7.7)
+  - DTFoundation/DTAnimatedGIF (1.7.7)
+  - DTFoundation/DTHTMLParser (1.7.7):
+    - DTFoundation/Core
+  - DTFoundation/UIKit (1.7.7):
+    - DTFoundation/Core
+  - SwiftyJSON (2.2.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - DTCoreText
+  - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: e4ab637e3195b645c814b87a652373439e59f2a4
+  DTCoreText: 934a16fe9ffdd169c96261721b39dc312b75713d
+  DTFoundation: c9b3362b83f0017389082ec067ede719826a579d
+  SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
+
+COCOAPODS: 0.38.1

@@ -10,6 +10,7 @@ import UIKit
 import WebKit
 import Alamofire
 import SwiftyJSON
+import DTCoreText
 
 class CommentTableViewController: UITableViewController {
     
@@ -53,7 +54,8 @@ class CommentTableViewController: UITableViewController {
                 cell.commentButton.hidden = false
             }
             
-            var htmlText = NSAttributedString(data: commentData["text"].stringValue.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil, error: nil)
+
+            let htmlText = NSAttributedString(HTMLData: commentData["text"].stringValue.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!, options: [DTUseiOS6Attributes: NSNumber(bool: true)], documentAttributes: nil)
             cell.contentTextView.attributedText = htmlText
             cell.contentTextView.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
             

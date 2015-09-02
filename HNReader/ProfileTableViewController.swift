@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import DTCoreText
 
 
 class ProfileTableViewController: UITableViewController, UITableViewDelegate {
@@ -41,7 +42,7 @@ class ProfileTableViewController: UITableViewController, UITableViewDelegate {
                     self.userLabel.text = userData["id"].stringValue
                     self.createdLabel.text = Helper.timeAgoFromTimeInterval(NSDate().timeIntervalSince1970 - NSTimeInterval(userData["created"].intValue))
                     self.karmaLabel.text = userData["karma"].stringValue
-                    var htmlText = NSAttributedString(data: userData["about"].stringValue.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil, error: nil)
+                    let htmlText = NSAttributedString(HTMLData: userData["about"].stringValue.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!, options: [DTUseiOS6Attributes: NSNumber(bool: true)], documentAttributes: nil)
                     self.aboutTextView.attributedText = htmlText
                     self.aboutTextView.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
                     

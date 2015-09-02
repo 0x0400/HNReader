@@ -18,12 +18,12 @@
 		1F44FC601B7A24F9009FDF26 /* HNReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F44FC5F1B7A24F9009FDF26 /* HNReaderTests.swift */; };
 		1F54C48A1B7E01D400CB2010 /* CommentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F54C4891B7E01D400CB2010 /* CommentTableViewController.swift */; };
 		1F54C48C1B7E022400CB2010 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F54C48B1B7E022400CB2010 /* CommentTableViewCell.swift */; };
-		1F839A431B7A4E82003CE2CC /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F839A411B7A4E82003CE2CC /* Alamofire.framework */; };
-		1F839A441B7A4E82003CE2CC /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F839A421B7A4E82003CE2CC /* SwiftyJSON.framework */; };
 		1F839A461B7A5A1D003CE2CC /* StoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F839A451B7A5A1D003CE2CC /* StoriesTableViewCell.swift */; };
 		1F839A481B7A5BDE003CE2CC /* StoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F839A471B7A5BDE003CE2CC /* StoriesTableViewController.swift */; };
 		1F839A4A1B7AF560003CE2CC /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F839A491B7AF560003CE2CC /* UIColor+Hex.swift */; };
 		1F839A4E1B7B4993003CE2CC /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F839A4D1B7B4993003CE2CC /* ProfileTableViewController.swift */; };
+		7B3344AC74112100AF9FF95B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC628AD3E486AA35E4C93AA4 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8211C834FE47E4926F79A1B4 /* Pods_HNReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E70C65F42BD8BF5A4BB1AAC /* Pods_HNReader.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,12 +52,14 @@
 		1F44FC5F1B7A24F9009FDF26 /* HNReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HNReaderTests.swift; sourceTree = "<group>"; };
 		1F54C4891B7E01D400CB2010 /* CommentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewController.swift; sourceTree = "<group>"; };
 		1F54C48B1B7E022400CB2010 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
-		1F839A411B7A4E82003CE2CC /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
-		1F839A421B7A4E82003CE2CC /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		1F839A451B7A5A1D003CE2CC /* StoriesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesTableViewCell.swift; sourceTree = "<group>"; };
 		1F839A471B7A5BDE003CE2CC /* StoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesTableViewController.swift; sourceTree = "<group>"; };
 		1F839A491B7AF560003CE2CC /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		1F839A4D1B7B4993003CE2CC /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		1FA42400DC29FD2944A5A6C0 /* Pods-HNReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HNReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HNReader/Pods-HNReader.debug.xcconfig"; sourceTree = "<group>"; };
+		35E46DE9FCEB5ACC5306735A /* Pods-HNReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HNReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-HNReader/Pods-HNReader.release.xcconfig"; sourceTree = "<group>"; };
+		6E70C65F42BD8BF5A4BB1AAC /* Pods_HNReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HNReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC628AD3E486AA35E4C93AA4 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,8 +67,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F839A431B7A4E82003CE2CC /* Alamofire.framework in Frameworks */,
-				1F839A441B7A4E82003CE2CC /* SwiftyJSON.framework in Frameworks */,
+				8211C834FE47E4926F79A1B4 /* Pods_HNReader.framework in Frameworks */,
+				7B3344AC74112100AF9FF95B /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,11 +115,11 @@
 		1F44FC381B7A24F8009FDF26 = {
 			isa = PBXGroup;
 			children = (
-				1F839A411B7A4E82003CE2CC /* Alamofire.framework */,
-				1F839A421B7A4E82003CE2CC /* SwiftyJSON.framework */,
 				1F44FC431B7A24F8009FDF26 /* HNReader */,
 				1F44FC5C1B7A24F9009FDF26 /* HNReaderTests */,
 				1F44FC421B7A24F8009FDF26 /* Products */,
+				65BE40CE30FBC6AB6A708427 /* Pods */,
+				85E0D3CF10CC4B9342746F51 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -171,6 +173,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		65BE40CE30FBC6AB6A708427 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1FA42400DC29FD2944A5A6C0 /* Pods-HNReader.debug.xcconfig */,
+				35E46DE9FCEB5ACC5306735A /* Pods-HNReader.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		85E0D3CF10CC4B9342746F51 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6E70C65F42BD8BF5A4BB1AAC /* Pods_HNReader.framework */,
+				DC628AD3E486AA35E4C93AA4 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -178,10 +198,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1F44FC631B7A24F9009FDF26 /* Build configuration list for PBXNativeTarget "HNReader" */;
 			buildPhases = (
+				6AC894C4B56EB72C21BB66D6 /* Check Pods Manifest.lock */,
 				1F44FC3D1B7A24F8009FDF26 /* Sources */,
 				1F44FC3E1B7A24F8009FDF26 /* Frameworks */,
 				1F44FC3F1B7A24F8009FDF26 /* Resources */,
-				1F839A401B7A4DE7003CE2CC /* Run Script */,
+				669C866C2F04A585BBC81ED0 /* Embed Pods Frameworks */,
+				9A958D40BE37A4A8140AE0B1 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -269,21 +291,50 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1F839A401B7A4DE7003CE2CC /* Run Script */ = {
+		669C866C2F04A585BBC81ED0 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
 			);
-			name = "Run Script";
+			name = "Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6AC894C4B56EB72C21BB66D6 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9A958D40BE37A4A8140AE0B1 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -427,6 +478,7 @@
 		};
 		1F44FC641B7A24F9009FDF26 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1FA42400DC29FD2944A5A6C0 /* Pods-HNReader.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -441,6 +493,7 @@
 		};
 		1F44FC651B7A24F9009FDF26 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 35E46DE9FCEB5ACC5306735A /* Pods-HNReader.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
