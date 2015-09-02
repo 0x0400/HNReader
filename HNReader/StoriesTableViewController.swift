@@ -100,7 +100,7 @@ class StoriesTableViewController: UITableViewController {
                 }
             }
         } else if segue.identifier == "showComments" {
-            var buttonPosition = sender?.convertPoint(CGPointZero, toView: self.tableView)
+            let buttonPosition = sender?.convertPoint(CGPointZero, toView: self.tableView)
             if let indexPath = self.tableView.indexPathForRowAtPoint(buttonPosition!) {
                 if let ctvc = segue.destinationViewController as? CommentTableViewController {
                     ctvc.comments = JSON(storiesCache.objectForKey(topStories[indexPath.row].stringValue)!)["kids"].arrayValue

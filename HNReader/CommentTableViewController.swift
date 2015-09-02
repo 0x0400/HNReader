@@ -96,7 +96,7 @@ class CommentTableViewController: UITableViewController {
                 ptvc.user = user!
             }
         } else if segue.identifier == "showComments" {
-            var buttonPosition = sender?.convertPoint(CGPointZero, toView: self.tableView)
+            let buttonPosition = sender?.convertPoint(CGPointZero, toView: self.tableView)
             if let indexPath = self.tableView.indexPathForRowAtPoint(buttonPosition!) {
                 if let ctvc = segue.destinationViewController as? CommentTableViewController {
                     ctvc.comments = JSON(commentCache.objectForKey(comments[indexPath.row].stringValue)!)["kids"].arrayValue
