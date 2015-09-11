@@ -12,7 +12,7 @@ import SwiftyJSON
 import DTCoreText
 
 
-class ProfileTableViewController: UITableViewController, UITableViewDelegate {
+class ProfileTableViewController: UITableViewController {
 
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var createdLabel: UILabel!
@@ -32,13 +32,13 @@ class ProfileTableViewController: UITableViewController, UITableViewDelegate {
         tableView.delegate = self
         
         if !user.isEmpty {
-            Alamofire.request(.GET, url + "\(user).json").responseJSON { (req, res, json, error) in
-                if error != nil {
-                    NSLog("Error: \(error)")
-                    println(req)
-                    println(res)
+            Alamofire.request(.GET, url + "\(user).json").responseJSON { (req, res, result) in
+                if result.isFailure {
+                    NSLog("Error: \(result.error)")
+                    print(req)
+                    print(res)
                 } else {
-                    let userData = JSON(json!)
+                    let userData = JSON(result.value!)
                     self.userLabel.text = userData["id"].stringValue
                     self.createdLabel.text = Helper.timeAgoFromTimeInterval(NSDate().timeIntervalSince1970 - NSTimeInterval(userData["created"].intValue))
                     self.karmaLabel.text = userData["karma"].stringValue

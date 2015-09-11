@@ -46,7 +46,7 @@ class CommentTableViewController: UITableViewController {
             cell.userButton.setTitle(commentData["by"].stringValue, forState: .Normal)
             cell.timeLabel.text = Helper.timeAgoFromTimeInterval(NSDate().timeIntervalSince1970 - NSTimeInterval(commentData["time"].intValue))
             
-            var kids = commentData["kids"].arrayValue.count
+            let kids = commentData["kids"].arrayValue.count
             if kids == 0 {
                 cell.commentButton.hidden = true
             } else {
@@ -76,13 +76,13 @@ class CommentTableViewController: UITableViewController {
 //            webView?.loadHTMLString(commentData["text"].stringValue, baseURL: nil)
             
         } else {
-            Alamofire.request(.GET, commentUrl + "\(comments[indexPath.row].stringValue).json").responseJSON { (req, res, json, error) in
-                if error != nil {
-                    NSLog("Error: \(error)")
-                    println(req)
-                    println(res)
+            Alamofire.request(.GET, commentUrl + "\(comments[indexPath.row].stringValue).json").responseJSON { (req, res, result) in
+                if result.isFailure {
+                    NSLog("Error: \(result.error)")
+                    print(req)
+                    print(res)
                 } else {
-                    self.commentCache.setObject(json!, forKey: self.comments[indexPath.row].stringValue)
+                    self.commentCache.setObject(result.value!, forKey: self.comments[indexPath.row].stringValue)
                     self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
                 }
             }

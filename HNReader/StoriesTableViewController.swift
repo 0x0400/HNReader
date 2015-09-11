@@ -32,12 +32,12 @@ class StoriesTableViewController: UITableViewController {
     }
     
     func reloadData() {
-        Alamofire.request(.GET, storiesUrl).responseJSON { (req, res, json, error) in
-            if error != nil {
-                println(req)
-                println(res)
+        Alamofire.request(.GET, storiesUrl).responseJSON { (req, res, result) in
+            if result.isFailure {
+                print(req)
+                print(res)
             } else {
-                self.topStories = JSON(json!)
+                self.topStories = JSON(result.value!)
                 self.storiesCache.removeAllObjects()
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()
@@ -71,13 +71,13 @@ class StoriesTableViewController: UITableViewController {
             cell.pointLabel.text = storyData["score"].stringValue + " points"
             cell.commentButton.setTitle(String(storyData["kids"].arrayValue.count), forState: .Normal)
         } else {
-            Alamofire.request(.GET, storyUrl + "\(topStories[indexPath.row].stringValue).json").responseJSON { (req, res, json, error) in
-                if error != nil {
-                    NSLog("Error: \(error)")
-                    println(req)
-                    println(res)
+            Alamofire.request(.GET, storyUrl + "\(topStories[indexPath.row].stringValue).json").responseJSON { (req, res, result) in
+                if result.isFailure {
+                    NSLog("Error: \(result.error)")
+                    print(req)
+                    print(res)
                 } else {
-                    self.storiesCache.setObject(json!, forKey: self.topStories[indexPath.row].stringValue)
+                    self.storiesCache.setObject(result.value!, forKey: self.topStories[indexPath.row].stringValue)
                     self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
                 }
             }
@@ -94,7 +94,7 @@ class StoriesTableViewController: UITableViewController {
                 ptvc.user = user!
             }
         } else if segue.identifier == "showStory" {
-            if let indexPath = self.tableView.indexPathForSelectedRow() {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
                 if let svc = segue.destinationViewController as? StoryViewController {
                     svc.storyData = JSON(storiesCache.objectForKey(topStories[indexPath.row].stringValue)!)
                 }

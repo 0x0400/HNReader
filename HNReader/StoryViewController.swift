@@ -21,7 +21,7 @@ class StoryViewController: UIViewController, WKNavigationDelegate {
     @IBOutlet weak var progressView: UIProgressView!
 
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         self.webView = WKWebView(frame: CGRectZero)
         
         super.init(coder: aDecoder)
@@ -45,7 +45,7 @@ class StoryViewController: UIViewController, WKNavigationDelegate {
         // Do any additional setup after loading the view.
         view.insertSubview(webView, belowSubview: progressView)
         
-        webView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        webView.translatesAutoresizingMaskIntoConstraints = false
         let height = NSLayoutConstraint(item: webView, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 1, constant: -44)
         let width = NSLayoutConstraint(item: webView, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 1, constant: 0)
         view.addConstraints([height, width])
@@ -76,7 +76,7 @@ class StoryViewController: UIViewController, WKNavigationDelegate {
     }
     
 
-    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "loading" {
             backButton.enabled = webView.canGoBack
             forwardButton.enabled = webView.canGoForward
