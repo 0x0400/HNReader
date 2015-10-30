@@ -22,7 +22,7 @@
 		1F839A481B7A5BDE003CE2CC /* StoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F839A471B7A5BDE003CE2CC /* StoriesTableViewController.swift */; };
 		1F839A4A1B7AF560003CE2CC /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F839A491B7AF560003CE2CC /* UIColor+Hex.swift */; };
 		1F839A4E1B7B4993003CE2CC /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F839A4D1B7B4993003CE2CC /* ProfileTableViewController.swift */; };
-		7B3344AC74112100AF9FF95B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC628AD3E486AA35E4C93AA4 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		7B3344AC74112100AF9FF95B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC628AD3E486AA35E4C93AA4 /* Pods.framework */; };
 		8211C834FE47E4926F79A1B4 /* Pods_HNReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E70C65F42BD8BF5A4BB1AAC /* Pods_HNReader.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -481,9 +481,7 @@
 			baseConfigurationReference = 1FA42400DC29FD2944A5A6C0 /* Pods-HNReader.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = HNReader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -495,9 +493,7 @@
 			baseConfigurationReference = 35E46DE9FCEB5ACC5306735A /* Pods-HNReader.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = HNReader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

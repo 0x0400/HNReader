@@ -1,37 +1,27 @@
 PODS:
-  - Alamofire (2.0.0)
+  - Alamofire (3.1.0)
   - DTCoreText (1.6.16):
     - DTFoundation/Core (~> 1.7.5)
     - DTFoundation/DTAnimatedGIF (~> 1.7.5)
     - DTFoundation/DTHTMLParser (~> 1.7.5)
     - DTFoundation/UIKit (~> 1.7.5)
-  - DTFoundation/Core (1.7.7)
-  - DTFoundation/DTAnimatedGIF (1.7.7)
-  - DTFoundation/DTHTMLParser (1.7.7):
+  - DTFoundation/Core (1.7.8)
+  - DTFoundation/DTAnimatedGIF (1.7.8)
+  - DTFoundation/DTHTMLParser (1.7.8):
     - DTFoundation/Core
-  - DTFoundation/UIKit (1.7.7):
+  - DTFoundation/UIKit (1.7.8):
     - DTFoundation/Core
-  - SwiftyJSON (2.2.1)
+  - SwiftyJSON (2.3.0)
 
 DEPENDENCIES:
   - Alamofire
   - DTCoreText
-  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `xcode7`)
-
-EXTERNAL SOURCES:
-  SwiftyJSON:
-    :branch: xcode7
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
-
-CHECKOUT OPTIONS:
-  SwiftyJSON:
-    :commit: d4df13c66146a8e9c8d96c852746a08363003d36
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: 2f13548b29d25a58ecd91c9225fb51493e2b782b
+  Alamofire: 415bd7f56197722978759078486689f7ef913dce
   DTCoreText: 934a16fe9ffdd169c96261721b39dc312b75713d
-  DTFoundation: c9b3362b83f0017389082ec067ede719826a579d
-  SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
+  DTFoundation: 46e2b2fafe78d67febfd8d1f85fe9845a093f00e
+  SwiftyJSON: 8d6b61a70277ef2a5d710d372e06e7e2d87fb9e4
 
-COCOAPODS: 0.38.1
+COCOAPODS: 0.39.0

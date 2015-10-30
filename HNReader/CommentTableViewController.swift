@@ -76,13 +76,13 @@ class CommentTableViewController: UITableViewController {
 //            webView?.loadHTMLString(commentData["text"].stringValue, baseURL: nil)
             
         } else {
-            Alamofire.request(.GET, commentUrl + "\(comments[indexPath.row].stringValue).json").responseJSON { (req, res, result) in
-                if result.isFailure {
-                    NSLog("Error: \(result.error)")
-                    print(req)
-                    print(res)
+            Alamofire.request(.GET, commentUrl + "\(comments[indexPath.row].stringValue).json").responseJSON { response in
+                if response.result.isFailure {
+                    NSLog("Error: \(response.result.error)")
+                    print(response.request)
+                    print(response.response)
                 } else {
-                    self.commentCache.setObject(result.value!, forKey: self.comments[indexPath.row].stringValue)
+                    self.commentCache.setObject(response.result.value!, forKey: self.comments[indexPath.row].stringValue)
                     self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
                 }
             }

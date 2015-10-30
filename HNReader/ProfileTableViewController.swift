@@ -32,13 +32,13 @@ class ProfileTableViewController: UITableViewController {
         tableView.delegate = self
         
         if !user.isEmpty {
-            Alamofire.request(.GET, url + "\(user).json").responseJSON { (req, res, result) in
-                if result.isFailure {
-                    NSLog("Error: \(result.error)")
-                    print(req)
-                    print(res)
+            Alamofire.request(.GET, url + "\(user).json").responseJSON { response in
+                if response.result.isFailure {
+                    NSLog("Error: \(response.result.error)")
+                    print(response.request)
+                    print(response.response)
                 } else {
-                    let userData = JSON(result.value!)
+                    let userData = JSON(response.result.value!)
                     self.userLabel.text = userData["id"].stringValue
                     self.createdLabel.text = Helper.timeAgoFromTimeInterval(NSDate().timeIntervalSince1970 - NSTimeInterval(userData["created"].intValue))
                     self.karmaLabel.text = userData["karma"].stringValue

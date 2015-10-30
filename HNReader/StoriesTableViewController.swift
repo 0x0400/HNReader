@@ -32,12 +32,12 @@ class StoriesTableViewController: UITableViewController {
     }
     
     func reloadData() {
-        Alamofire.request(.GET, storiesUrl).responseJSON { (req, res, result) in
-            if result.isFailure {
-                print(req)
-                print(res)
+        Alamofire.request(.GET, storiesUrl).responseJSON { response in
+            if response.result.isFailure {
+                print(response.request)
+                print(response.response)
             } else {
-                self.topStories = JSON(result.value!)
+                self.topStories = JSON(response.result.value!)
                 self.storiesCache.removeAllObjects()
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()
@@ -71,13 +71,13 @@ class StoriesTableViewController: UITableViewController {
             cell.pointLabel.text = storyData["score"].stringValue + " points"
             cell.commentButton.setTitle(String(storyData["kids"].arrayValue.count), forState: .Normal)
         } else {
-            Alamofire.request(.GET, storyUrl + "\(topStories[indexPath.row].stringValue).json").responseJSON { (req, res, result) in
-                if result.isFailure {
-                    NSLog("Error: \(result.error)")
-                    print(req)
-                    print(res)
+            Alamofire.request(.GET, storyUrl + "\(topStories[indexPath.row].stringValue).json").responseJSON { response in
+                if response.result.isFailure {
+                    NSLog("Error: \(response.result.error)")
+                    print(response.request)
+                    print(response.response)
                 } else {
-                    self.storiesCache.setObject(result.value!, forKey: self.topStories[indexPath.row].stringValue)
+                    self.storiesCache.setObject(response.result.value!, forKey: self.topStories[indexPath.row].stringValue)
                     self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
                 }
             }

@@ -4,7 +4,7 @@ use_frameworks!
 
 pod 'DTCoreText'
 pod 'Alamofire'
-pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git', :branch => 'xcode7'
+pod 'SwiftyJSON'
 
 target 'HNReader' do
 
@@ -13,4 +13,3 @@ end
 target 'HNReaderTests' do
 
 end
-
