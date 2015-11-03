@@ -5,6 +5,7 @@ use_frameworks!
 pod 'DTCoreText'
 pod 'Alamofire'
 pod 'SwiftyJSON'
+pod 'MJRefresh'
 
 target 'HNReader' do
 

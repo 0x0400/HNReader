@@ -9,15 +9,17 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import MJRefresh
 
 class StoriesTableViewController: UITableViewController {
     
     private let storyUrl = "https://hacker-news.firebaseio.com/v0/item/"
     private let reuseIdentifier = "StoriesCell"
-    private let storiesCache = NSCache()
+    private var storiesCache = [JSON]()
     
     var topStories = JSON(NSNull)
     var storiesUrl = ""
+    var numberPerFetch = 20
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,34 +27,66 @@ class StoriesTableViewController: UITableViewController {
         tableView.estimatedRowHeight = 120.0
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl?.addTarget(self, action: "reloadData", forControlEvents: .ValueChanged)
+        tableView.footer = MJRefreshAutoNormalFooter(refreshingBlock: { () -> Void in
+            self.loadStories()
+        })
+
+        loadAllStoriesID()
+    }
+
+    func loadStories() {
+        let index = storiesCache.count
+        if index == topStories.count {
+            self.tableView.footer.endRefreshing()
+            return
+        }
+        var endIndex = index + 20
+        if endIndex > topStories.count {
+            endIndex = topStories.count
+        }
         
-        reloadData()
+        let fetchGroup = dispatch_group_create()
+        for curIdx in index..<endIndex {
+            storiesCache.append(JSON(NSNull))
+            dispatch_group_enter(fetchGroup)
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)){
+                Alamofire.request(.GET, self.storyUrl + "\(self.topStories[curIdx].stringValue).json").responseJSON { response in
+                    if response.result.isFailure {
+                        NSLog("Error: \(response.result.error)")
+                        print(response.request)
+                        print(response.response)
+                    } else {
+                        self.storiesCache[curIdx] = JSON(response.result.value!)
+                    }
+                    dispatch_group_leave(fetchGroup)
+                }
+            }
+        }
+        dispatch_group_notify(fetchGroup, dispatch_get_main_queue()) {
+            self.tableView.reloadData()
+            self.tableView.footer.endRefreshing()
+        }
     }
     
-    func reloadData() {
+    func loadAllStoriesID() {
         Alamofire.request(.GET, storiesUrl).responseJSON { response in
             if response.result.isFailure {
                 print(response.request)
                 print(response.response)
             } else {
                 self.topStories = JSON(response.result.value!)
-                self.storiesCache.removeAllObjects()
-                self.tableView.reloadData()
-                self.refreshControl?.endRefreshing()
+                self.loadStories()
             }
         }
     }
 
-    // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return topStories.count
+        return storiesCache.count
     }
 
 
@@ -61,27 +95,14 @@ class StoriesTableViewController: UITableViewController {
 
         // Configure the cell...
         cell.rowButton.setTitle(String(indexPath.row), forState: UIControlState.Normal)
-        if let jsonData: AnyObject = storiesCache.objectForKey(topStories[indexPath.row].stringValue) {
-            let storyData = JSON(jsonData)
-            cell.titleLabel.text = storyData["title"].stringValue
-            cell.userButton.setTitle(storyData["by"].stringValue, forState: .Normal)
-            let url = storyData["url"].stringValue.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-            cell.urlLabel.text = NSURL(string: url)?.host ?? ""
-            cell.timeLabel.text = Helper.timeAgoFromTimeInterval(NSDate().timeIntervalSince1970 - NSTimeInterval(storyData["time"].intValue))
-            cell.pointLabel.text = storyData["score"].stringValue + " points"
-            cell.commentButton.setTitle(String(storyData["kids"].arrayValue.count), forState: .Normal)
-        } else {
-            Alamofire.request(.GET, storyUrl + "\(topStories[indexPath.row].stringValue).json").responseJSON { response in
-                if response.result.isFailure {
-                    NSLog("Error: \(response.result.error)")
-                    print(response.request)
-                    print(response.response)
-                } else {
-                    self.storiesCache.setObject(response.result.value!, forKey: self.topStories[indexPath.row].stringValue)
-                    self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-                }
-            }
-        }
+        let storyData = storiesCache[indexPath.row]
+        cell.titleLabel.text = storyData["title"].stringValue
+        cell.userButton.setTitle(storyData["by"].stringValue, forState: .Normal)
+        let url = storyData["url"].stringValue.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        cell.urlLabel.text = NSURL(string: url)?.host ?? ""
+        cell.timeLabel.text = Helper.timeAgoFromTimeInterval(NSDate().timeIntervalSince1970 - NSTimeInterval(storyData["time"].intValue))
+        cell.pointLabel.text = storyData["score"].stringValue + " points"
+        cell.commentButton.setTitle(String(storyData["kids"].arrayValue.count), forState: .Normal)
 
         return cell
     }
@@ -96,14 +117,14 @@ class StoriesTableViewController: UITableViewController {
         } else if segue.identifier == "showStory" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 if let svc = segue.destinationViewController as? StoryViewController {
-                    svc.storyData = JSON(storiesCache.objectForKey(topStories[indexPath.row].stringValue)!)
+                    svc.storyData = storiesCache[indexPath.row]
                 }
             }
         } else if segue.identifier == "showComments" {
             let buttonPosition = sender?.convertPoint(CGPointZero, toView: self.tableView)
             if let indexPath = self.tableView.indexPathForRowAtPoint(buttonPosition!) {
                 if let ctvc = segue.destinationViewController as? CommentTableViewController {
-                    ctvc.comments = JSON(storiesCache.objectForKey(topStories[indexPath.row].stringValue)!)["kids"].arrayValue
+                    ctvc.comments = storiesCache[indexPath.row]["kids"].arrayValue
                 }
             }
         }

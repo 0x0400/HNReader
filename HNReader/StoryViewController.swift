@@ -42,7 +42,6 @@ class StoryViewController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         view.insertSubview(webView, belowSubview: progressView)
         
         webView.translatesAutoresizingMaskIntoConstraints = false

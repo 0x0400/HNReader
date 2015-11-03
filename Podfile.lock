@@ -11,17 +11,20 @@ PODS:
     - DTFoundation/Core
   - DTFoundation/UIKit (1.7.8):
     - DTFoundation/Core
-  - SwiftyJSON (2.3.0)
+  - MJRefresh (2.4.12)
+  - SwiftyJSON (2.3.1)
 
 DEPENDENCIES:
   - Alamofire
   - DTCoreText
+  - MJRefresh
   - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 415bd7f56197722978759078486689f7ef913dce
   DTCoreText: 934a16fe9ffdd169c96261721b39dc312b75713d
   DTFoundation: 46e2b2fafe78d67febfd8d1f85fe9845a093f00e
-  SwiftyJSON: 8d6b61a70277ef2a5d710d372e06e7e2d87fb9e4
+  MJRefresh: ca8e9589895977df32d379d46e6b8a5450b3ff44
+  SwiftyJSON: 592b53bee5ef3dd9b3bebc6b9cb7ee35426ae8c3
 
 COCOAPODS: 0.39.0
